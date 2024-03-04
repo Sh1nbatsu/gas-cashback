@@ -12,23 +12,25 @@ contract GasCashbackToken is ERC20 {
 
     constructor() ERC20("GasCashback", "GCB") {}
 
-    function mint() external {
-        _mint(tx.origin, GAS_MINT);
+    // This modifier is used to mint Gas Cashback
+    modifier gasmint(uint256 gas) {
+        _mint(tx.origin, gas);
+        _;
     }
+
+    function mint() external gasmint(GAS_MINT) {}
 
     function transfer(
         address to,
         uint256 value
-    ) public override returns (bool) {
-        _mint(tx.origin, GAS_TRANSFER);
+    ) public override gasmint(GAS_TRANSFER) returns (bool) {
         return super.transfer(to, value);
     }
 
     function approve(
         address spender,
         uint256 value
-    ) public override returns (bool) {
-        _mint(tx.origin, GAS_APPROVE);
+    ) public override gasmint(GAS_APPROVE) returns (bool) {
         return super.approve(spender, value);
     }
 
@@ -36,8 +38,7 @@ contract GasCashbackToken is ERC20 {
         address from,
         address to,
         uint256 value
-    ) public override returns (bool) {
-        _mint(tx.origin, GAS_TRANSFER_FROM);
+    ) public override gasmint(GAS_TRANSFER_FROM) returns (bool) {
         return super.transferFrom(from, to, value);
     }
 }
