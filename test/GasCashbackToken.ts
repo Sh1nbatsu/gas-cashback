@@ -14,7 +14,9 @@ describe("GasCashbackToken", function () {
     // Contracts are deployed using the first signer/account by default
     const [user, loser] = await ethers.getSigners();
 
-    const GasCashbackToken = await ethers.getContractFactory("GasCashbackToken");
+    const GasCashbackToken = await ethers.getContractFactory(
+      "GasCashbackToken"
+    );
     const contract = await GasCashbackToken.deploy();
 
     return { contract, user, loser };
@@ -67,6 +69,26 @@ describe("GasCashbackToken", function () {
 
       expect(await contract.balanceOf(user.address)).to.be.equal(
         4n * (await contract.GAS_APPROVE())
+      );
+    });
+
+    it("transferFrom", async function () {
+      const { user, loser, contract } = await loadFixture(deployFixture);
+
+      await contract.mint();
+
+      await contract.approve(loser.address, await contract.GAS_MINT());
+
+      await contract
+        .connect(loser)
+        .transferFrom(user.address, loser.address, await contract.GAS_MINT());
+
+      expect(await contract.balanceOf(user.address)).to.be.equal(
+        await contract.GAS_APPROVE()
+      );
+
+      expect(await contract.balanceOf(loser.address)).to.be.equal(
+        (await contract.GAS_TRANSFER_FROM()) + (await contract.GAS_MINT())
       );
     });
   });
