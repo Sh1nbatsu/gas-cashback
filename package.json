@@ -1,5 +1,13 @@
 {
   "name": "gas-cashback",
+  "version": "0.1.0",
+  "description": "Gas Cashback is a blockchain mass adoption paradigm centered around providing cashback to users for the Gas they spend within the system",
+  "license": "MIT",
+  "scripts": {
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "gas-report": "REPORT_GAS=true hardhat test"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@openzeppelin/contracts": "^5.0.2",

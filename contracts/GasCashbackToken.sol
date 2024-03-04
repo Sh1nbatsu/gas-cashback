@@ -4,6 +4,7 @@ pragma solidity ^0.8.24;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract GasCashbackToken is ERC20 {
+    // The minimal Gas amount spent by the corresponding functions
     uint256 public constant GAS_MINT = 33537;
     uint256 public constant GAS_TRANSFER = 41928;
     uint256 public constant GAS_APPROVE = 36722;
