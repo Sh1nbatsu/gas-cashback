@@ -6,7 +6,7 @@ import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
-describe("GasMinter", function () {
+describe("GasCashbackToken", function () {
   // We define a fixture to reuse the same setup in every test.
   // We use loadFixture to run this setup once, snapshot that state,
   // and reset Hardhat Network to that snapshot in every test.
@@ -14,8 +14,8 @@ describe("GasMinter", function () {
     // Contracts are deployed using the first signer/account by default
     const [user, loser] = await ethers.getSigners();
 
-    const GasMinter = await ethers.getContractFactory("GasMinter");
-    const contract = await GasMinter.deploy();
+    const GasCashbackToken = await ethers.getContractFactory("GasCashbackToken");
+    const contract = await GasCashbackToken.deploy();
 
     return { contract, user, loser };
   }

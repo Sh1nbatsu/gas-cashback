@@ -3,13 +3,13 @@ pragma solidity ^0.8.24;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract GasMinter is ERC20 {
+contract GasCashbackToken is ERC20 {
     uint256 public constant GAS_MINT = 33537;
     uint256 public constant GAS_TRANSFER = 41928;
     uint256 public constant GAS_APPROVE = 36722;
     uint256 public constant GAS_TRANSFER_FROM = 52351;
 
-    constructor() ERC20("GasMinter", "GMR") {}
+    constructor() ERC20("GasCashback", "GCB") {}
 
     function mint() external {
         _mint(tx.origin, GAS_MINT);

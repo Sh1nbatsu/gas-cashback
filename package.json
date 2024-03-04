@@ -1,5 +1,5 @@
 {
-  "name": "gasminter",
+  "name": "gas-cashback",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@openzeppelin/contracts": "^5.0.2",
